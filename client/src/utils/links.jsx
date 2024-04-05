@@ -12,11 +12,7 @@ const links = [
     path: '.',
     icon: <FaWpforms />,
   },
-  {
-    text: 'add job',
-    path: '.',
-    icon: <FaWpforms />,
-  },
+
   {
     text: 'all jobs',
     path: 'all-jobs',
@@ -38,3 +34,4 @@ const links = [
     icon: <MdAdminPanelSettings />,
   },
 ];
+export default links;
