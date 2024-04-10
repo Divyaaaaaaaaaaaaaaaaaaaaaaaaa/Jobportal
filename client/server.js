@@ -3,6 +3,20 @@ import express from 'express';
 const app = express();
 import morgan from 'morgan';
 
+const getData = async () => {};
+
+getData();
+
+try {
+  const response = await fetch(
+    'https://www.course-api.com/react-useReducer-cart-project'
+  );
+  const cartData = await response.json();
+  console.log(cartData);
+} catch (error) {
+  console.log(error);
+}
+
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
