@@ -1,6 +1,7 @@
-import Job from '../models/JobModel.js';
+import { NotFoundError } from '../errors/customError.js';
+import Job from '../models/jobModel.js';
 import { StatusCodes } from 'http-status-codes';
-
+import { NotFoundError } from '../errors/customError.js';
 export const getAllJobs = async (req, res) => {
   const jobs = await Job.find({ company: 'apple' });
   res.status(StatusCodes.OK).json({ jobs });
@@ -15,10 +16,9 @@ export const getJob = async (req, res) => {
   const job = await Job.findById(id);
 
   if (!job) {
-    throw new Error('something');
-    return res.status(404).json({ msg: `no job with id ${id}` });
+    throw new NotFoundError(``);
+    res.status(StatusCodes.OK).json({ job });
   }
-  res.status(StatusCodes.OK).json({ job });
 };
 
 export const updateJob = async (req, res) => {
