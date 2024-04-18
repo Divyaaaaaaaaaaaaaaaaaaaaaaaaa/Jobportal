@@ -3,7 +3,6 @@ import express from 'express';
 const app = express();
 import * as dotenv from 'dotenv';
 dotenv.config();
-import { validateTest } from './middleware/validationMiddleware.js';
 
 import morgan from 'morgan';
 import mongoose from 'mongoose';
@@ -22,10 +21,7 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('hello world');
 });
-app.post('/api/v1/test', validateTest, (req, res) => {
-  const { name } = req.body;
-  res.json({ message: `hello ${name}` });
-});
+
 app.use('api/v1/jobs', jobRouter);
 app.use('*', (req, res) => {
   res.status(404).json({ msg: 'not found' });
