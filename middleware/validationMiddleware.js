@@ -1,5 +1,5 @@
 import { body, validationResult } from 'express-validator';
-import { BadRequestError } from '../errors/customErrors.js';
+import { BadRequestError } from '../errors/customError.js';
 
 const withValidationErrors = (validationValues) => {
   return [
