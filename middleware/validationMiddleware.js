@@ -2,6 +2,7 @@ import { body, param, validationResult } from 'express-validator';
 import { BadRequestError } from '../errors/customError.js';
 import { JOB_STATUS, JOB_TYPE } from '../utils/constants.js';
 import mongoose from 'mongoose';
+import Job from '../models/JobModel.js';
 const withValidationErrors = (validationValues) => {
   return [
     validationValues,
@@ -30,5 +31,8 @@ export const validateIdParam = withValidationErrors([
   param('id').custom(async (value) => {
     const isValidId = mongoose.Types.ObjectId.isValid(value);
     if (!isValidId) throw new BadRequestError('invalid MangoDB id');
+    const job = await Job.findById(id);
+
+    if (!job) throw new NotFoundError(`no job with id ${value}`);
   }),
 ]);
