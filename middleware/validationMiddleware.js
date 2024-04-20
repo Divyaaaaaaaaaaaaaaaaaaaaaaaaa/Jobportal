@@ -1,7 +1,7 @@
-import { body, validationResult } from 'express-validator';
+import { body, param, validationResult } from 'express-validator';
 import { BadRequestError } from '../errors/customError.js';
 import { JOB_STATUS, JOB_TYPE } from '../utils/constants.js';
-
+import mongoose from 'mongoose';
 const withValidationErrors = (validationValues) => {
   return [
     validationValues,
@@ -25,4 +25,10 @@ export const validateJobInput = withValidationErrors([
   body('jobType')
     .isIn(Object.values(JOB_TYPE))
     .withMessage('invalid type value'),
+]);
+export const validateIdParam = withValidationErrors([
+  param('id').custom(async (value) => {
+    const isValidId = mongoose.Types.ObjectId.isValid(value);
+    if (!isValidId) throw new BadRequestError('invalid MangoDB id');
+  }),
 ]);
