@@ -10,6 +10,9 @@ const withValidationErrors = (validationValues) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         const errorMessages = errors.array().map((error) => error.msg);
+        if (errorMessages[0].startsWith('no job')) {
+          throw new NotFoundError(errorMessages);
+        }
         throw new BadRequestError(errorMessages);
       }
       next();
@@ -30,7 +33,7 @@ export const validateJobInput = withValidationErrors([
 export const validateIdParam = withValidationErrors([
   param('id').custom(async (value) => {
     const isValidId = mongoose.Types.ObjectId.isValid(value);
-    if (!isValidId) throw new BadRequestError('invalid MangoDB id');
+    if (!isValidId) throw new Error('invalid MangoDB id');
     const job = await Job.findById(id);
 
     if (!job) throw new NotFoundError(`no job with id ${value}`);
