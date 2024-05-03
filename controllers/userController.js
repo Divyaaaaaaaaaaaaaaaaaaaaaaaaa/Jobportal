@@ -8,9 +8,13 @@ export const getCurrentUser = async (req, res) => {
   res.status(StatusCodes.OK).json({ userWithoutPassword });
 };
 export const getApplicationStats = async (req, res) => {
-  res.status(StatusCodes.OK).json({ msg: 'get application stats' });
+  const users = await user.countDocuments();
+  const jobs = await Job.countDocuments();
+  res.status(StatusCodes.OK).json({ users, jobs });
 };
 export const updateUser = async (req, res) => {
-  const updatedUser = await USer.findByIdAndUpdate(req.user.userId, req.body);
+  const obj = { ...req.body };
+  delete obj.password;
+  const updatedUser = await USer.findByIdAndUpdate(req.user.userId, obj);
   res.status(StatusCodes.OK).json({ msg: 'update user' });
 };
