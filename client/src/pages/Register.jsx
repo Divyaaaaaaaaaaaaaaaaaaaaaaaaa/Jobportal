@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Form, redirect, useNavigation, Link } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/RegisterAndLoginPage';
-import { Logo } from '../componenets';
-import { FormRow } from '../componenets';
+import { FormRow, Logo } from '../componenets';
+export const action = async;
 const Register = () => {
   return (
     <Wrapper>
-      <form className='form'>
+      <form method='post' className='form'>
         <Logo />
         <h4>Register</h4>
         <FormRow type='text' name='name' defaultValue='Divyaa' />
@@ -22,7 +22,7 @@ const Register = () => {
           submit
         </button>
         <p>
-          Already a memeber
+          Already a member
           <Link to='/login' className='member-btn'>
             Login
           </Link>
