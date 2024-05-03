@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/Dashboard';
 import { BigSidebar, Navbar, SmallSidebar } from '../componenets';
 import { createContext, useContext, useState } from 'react';
-import { checkDefaultTheme } from '../App';
+import { checkDefaultTheme } from '../App.jsx';
 const DashboardContext = createContext();
 
 const DashboardLayout = ({ queryClient }) => {

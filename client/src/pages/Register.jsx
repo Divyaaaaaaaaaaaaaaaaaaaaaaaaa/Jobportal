@@ -1,11 +1,14 @@
 import { Form, redirect, useNavigation, Link } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/RegisterAndLoginPage';
 import { FormRow, Logo } from '../componenets';
-export const action = async;
+export const action = async (data) => {
+  console.log(data);
+  return null;
+};
 const Register = () => {
   return (
     <Wrapper>
-      <form method='post' className='form'>
+      <Form method='post' className='form'>
         <Logo />
         <h4>Register</h4>
         <FormRow type='text' name='name' defaultValue='Divyaa' />
@@ -27,7 +30,7 @@ const Register = () => {
             Login
           </Link>
         </p>
-      </form>
+      </Form>
     </Wrapper>
   );
 };
