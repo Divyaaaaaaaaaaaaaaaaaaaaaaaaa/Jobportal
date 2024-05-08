@@ -1,11 +1,16 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, redirect, useLoaderData } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/Dashboard';
 import { BigSidebar, Navbar, SmallSidebar } from '../componenets';
 import { createContext, useContext, useState } from 'react';
 import { checkDefaultTheme } from '../App.jsx';
+export const loader = () => {
+  return 'hello world';
+};
 const DashboardContext = createContext();
 
 const DashboardLayout = ({ queryClient }) => {
+  const data = useLoaderData();
+  console.log();
   const user = { name: 'divyaa' };
   const [showSidebar, setShowSidebar] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme());
