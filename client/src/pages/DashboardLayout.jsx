@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 import { checkDefaultTheme } from '../App';
 export const loader = async () => {
   try {
-    const { data } = await customFetch.get('/users/current-user');
+    const { data } = await customFetch('/users/current-user');
     return data;
   } catch (error) {
     return redirect('/');
@@ -33,7 +33,7 @@ const DashboardLayout = ({ isDarkThemeEnabled }) => {
     localStorage.setItem('darkTheme', newDarkTheme);
   };
   const toggleSidebar = () => {
-    
+
     setShowSidebar(!showSidebar);
   };
   const logoutUser = async () => {
