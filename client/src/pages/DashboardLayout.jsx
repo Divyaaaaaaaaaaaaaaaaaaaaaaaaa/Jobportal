@@ -3,17 +3,21 @@ import Wrapper from '../assets/wrappers/Dashboard';
 import { BigSidebar, Navbar, SmallSidebar } from '../componenets';
 import { createContext, useContext, useState } from 'react';
 import { checkDefaultTheme } from '../App.jsx';
-export const loader = () => {
-  return 'hello world';
+export const loader = async () => {
+  try {
+    const { data } = await customFetch.get('/users/current-user');
+    return data;
+  } catch (error) {
+    return redirect('/');
+  }
 };
 const DashboardContext = createContext();
 
-const DashboardLayout = ({ queryClient }) => {
-  const data = useLoaderData();
-  console.log();
-  const user = { name: 'divyaa' };
+const DashboardLayout = ({ isDarkThemeEnabled }) => {
+  const { user } = useLoaderData();
+
   const [showSidebar, setShowSidebar] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme());
+  const [isDarkTheme, setIsDarkTheme] = useState(isDarkThemeEnabled);
   const toggleDarkTheme = () => {
     const newDarkTheme = !isDarkTheme;
     setIsDarkTheme(newDarkTheme);
@@ -44,7 +48,7 @@ const DashboardLayout = ({ queryClient }) => {
           <div>
             <Navbar />
             <div className='dashboard-page'>
-              <Outlet />
+              <Outlet context={{user}} />
             </div>
           </div>
         </main>
