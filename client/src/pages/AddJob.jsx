@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import customFetch from '../utils/customFetch';
 
 const AddJob = () => {
-  const { user } = useOutletContext();
+  const { user } = useOutletContext() || {};
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
 
@@ -22,7 +22,7 @@ const AddJob = () => {
             type='text'
             labelText='job location'
             name='jobLocation'
-            defaultValue={user.location}
+            defaultValue={user && user.location}
           />
           <FormRowSelect
             labelText='job status'
