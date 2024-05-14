@@ -5,8 +5,7 @@ import JobInfo from './JobInfo';
 import day from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 day.extend(advancedFormat);
-const Job = () => (
-  {
+const Job = ({
   _id,
   position,
   company,
