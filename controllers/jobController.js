@@ -20,10 +20,10 @@ export const updateJob = async (req, res) => {
     new: true,
   });
 
-  res.status(StatusCodes.OK).json({ msg: `job modified`, job: updatedJob });
+  res.status(StatusCodes.OK).json({ msg: 'job modified', job: updatedJob });
 };
 export const deleteJob = async (req, res) => {
-  const removeJob = await Job.findByInAndDelete(req.params.id);
+  const removeJob = await Job.findByIdAndDelete(req.params.id);
 
-  res.status(StatusCodes.OK).json({ msg: `job deleted`, job: removeJob });
+  res.status(StatusCodes.OK).json({ msg: 'job deleted', job: removeJob });
 };
