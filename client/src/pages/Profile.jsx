@@ -4,7 +4,7 @@ import { useOutletContext } from 'react-router-dom';
 import { useNavigation, Form } from 'react-router-dom';
 import customFetch from '../utils/customFetch';
 import { toast } from 'react-toastify';
-export const action = async (request) => {
+export const action = async ({request}) => {
   const formData = await request.formData();
   const file = formData.get('avatar');
   if (file && file.size > 500000) {
