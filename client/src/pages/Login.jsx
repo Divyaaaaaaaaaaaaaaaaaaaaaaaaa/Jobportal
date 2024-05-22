@@ -40,8 +40,7 @@ const Login = () => {
       <Form method='post' className='form'>
         <Logo />
         <h4>login</h4>
-        {errors?.msg && <p style={{ color: 'red' }}>{errors.msg}</p>}
-        <p></p>
+
         <FormRow type='email' name='email' defaultValue='divyaa@gmail.com' />
         <FormRow type='password' name='password' defaultValue='secret123' />
         <SubmitBtn formBtn />
