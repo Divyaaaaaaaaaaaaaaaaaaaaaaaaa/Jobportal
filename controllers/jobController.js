@@ -70,5 +70,5 @@ export const showStats = async (req, res) => {
       return { date, count };
     })
     .reverse();
-  res.status(StatusCodes.OK).json({ deafultStats, monthlyApplications });
+  res.status(StatusCodes.OK).json({ defaultStats, monthlyApplications });
 };
