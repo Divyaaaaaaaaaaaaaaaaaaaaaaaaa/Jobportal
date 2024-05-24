@@ -1,7 +1,7 @@
 import {
   ResponsiveContainer,
   BarChart,
-  Area,
+  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
