@@ -2,8 +2,9 @@ import Job from './Job';
 import Wrapper from '../assets/wrappers/JobsContainer';
 import { useAllJobsContext } from '../pages/AllJobs';
 const JobsContainer = () => {
-  const { data } = useAllJobsContext();
-  const { jobs } = data;
+   const { data } = useAllJobsContext();
+
+   const { jobs, totalJobs, numOfPages } = data;
   if (jobs.length === 0) {
     return (
       <Wrapper>
